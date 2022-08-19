@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mass of Z = {{z}} </title>
+    <script>src= "https://cdn.plot.ly/plotly-latest.min.js"</script>
+</head>
+<body>
+<div id = "myPlot">
+    <script>
+            let data = [{
+                            x :{{masses_a}},
+                            y: {{masses_mexp}},
+                            type: 'scatter',
+                            mode: 'markers',
+                            marker: {
+                            color: '#ff0000',
+                            size:10
+                            }
+                         }];
+
+            let layout = {
+                title: 'Masses of z ={{z}}',
+                xaxis: {
+                           title: 'A',
+                           titlefont:{
+                            size:18,
+                            color: '#7f7f7f'
+                            }
+                        },
+                yaxis: {
+                        title: 'Mass',
+                        titlefont:{
+                        size:18,
+                        color: '#7f7f7f'
+                        }
+                      }
+                    };
+
+                Plotly.newPlot('myPlot',data,loyout);
+
+
+
+
+
+
+    </script>
+</div>
+</body>
+</html>

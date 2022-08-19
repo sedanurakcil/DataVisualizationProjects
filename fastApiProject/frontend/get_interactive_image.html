@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get the interactive image</title>
+    <script src ="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#figure-div').load("http://127.0.0.1:8000/interactive_histogram/100")
+        });
+    </script>
+</head>
+<body>
+<div id="figure-div"></div>
+</body>
+</html>

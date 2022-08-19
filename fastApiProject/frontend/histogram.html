@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>"Data Visulation random number"</title>
+
+    <script src ="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src ="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+
+</head>
+<body>
+<!-- datayı fetchile web sayfasından alma fast apının döndürdüğü değeri seçenek 1
+<script>
+        fetch("http://127.0.0.1:8000 /hello/js1")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+            </script>
+            -->
+
+ <div id="plotly-div"></div>
+<script>
+    jQuery.ajax({
+        url: 'http://127.0.0.1:8000/random/1',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            let x = [];
+            for (let i = 0; i < data.length; i++) {
+                x.push(data[i])
+            }
+            console.log(x);
+            let trace = {
+                x: x,
+                type: 'histogram',
+                xbins: {
+                    start: 0,
+                    end: 100,
+                    size: 20
+                }
+            };
+
+            let layout = {
+                title: 'Histogram Api',
+                xaxis: {
+                    title: 'Random numbers'
+                },
+                yaxis: {
+                    title: 'Frequency'
+                },
+                bargap: 0.5
+            };
+            Plotly.newPlot('plotly-div', [trace], layout);
+        }
+
+          });
+    setInterval(function(){
+        $.ajax({
+            url: 'http://127.0.0.1:8000/random/1',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data){
+                console.log(data);
+                let x = [];
+                for( let i = 0; i < data.length; i++){
+                    x.push(data[i]);
+                }
+                Plotly.extendTraces('plotly-div',{
+                    x:[x]
+
+                },[0]);
+            }
+        })
+    },100);
+    </script>
+</body>
+</html>
